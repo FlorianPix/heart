@@ -24,8 +24,15 @@ void mousePressed(){
 void keyPressed(){
   int s = int(leaf.size()/2);
   leaf.add(s, new PVector(width/2, mouseY));
-  for (PVector v : leaf){
-    println(v.x, v.y);
+  PrintWriter file;
+  try {
+    file = new PrintWriter("C:\\Users\\Florian Pix\\Processing\\leaf\\leaf\\leaf_outline\\test.txt");
+    for (PVector v : leaf){
+      file.println(v.x + " " + v.y);
+    }
+    file.close();
+  } catch (Exception e){
+    e.printStackTrace();
   }
 }
 

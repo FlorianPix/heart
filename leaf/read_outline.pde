@@ -1,7 +1,12 @@
 ArrayList<PVector> read_leaf_outline(){
   String text = "";
   try {
-    String filePath = "C:\\Users\\Florian Pix\\Processing\\leaf\\leaf\\leaf_outline\\path.txt";
+    String filePath = "";
+    if (use_testPathFile){
+      filePath = "C:\\Users\\Florian Pix\\Processing\\leaf\\leaf\\leaf_outline\\test.txt";
+    } else {
+      filePath = "C:\\Users\\Florian Pix\\Processing\\leaf\\leaf\\leaf_outline\\path.txt";
+    }
     text = new String(Files.readAllBytes(Paths.get(filePath)));
   } catch (IOException e) {
     e.printStackTrace();

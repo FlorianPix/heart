@@ -24,8 +24,8 @@ ArrayList<Auxin> spawn(int count){
 
 ArrayList<PVector> possiblePositions(){
   ArrayList<PVector> allPositions = new ArrayList();
-  for (float x = 10; x < width; x+=10){
-    for (float y = 10; y < height; y+=10){
+  for (float x = 5; x < width; x+= 5){
+    for (float y = 5; y < height; y+= 5){
       allPositions.add(new PVector(x, y));
     }
   }

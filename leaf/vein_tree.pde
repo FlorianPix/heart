@@ -1,6 +1,7 @@
 class VeinTree{
   ArrayList<VeinTree> children;
   PVector co;
+  float growthrate = 2;
   
   VeinTree(PVector co){
     this.co = co;
@@ -30,19 +31,28 @@ class VeinTree{
     this.children = children;
   }
   
-  void drawTree(){
+  void drawTree(float weight){
     stroke(0, 150, 50);
-    circle(co.x, co.y, 1);
+    fill(0, 150, 50);
+    circle(co.x, co.y, weight);
+    weight = weight - 0.01;
+    if (weight < 0.2){
+      weight = 0.2;
+    }
     for (VeinTree child : children){
-      child.drawTree();
+      
+      child.drawTree(weight);
     }
   }
   
   void grow(ArrayList<Auxin> hormones){
     for (Auxin h : hormones){
       VeinTree t = this.closest(h);
-      float x = t.co.x + (h.co.x - t.co.x) / 20;
-      float y = t.co.y + (h.co.x - t.co.y) / 20;
+      float x = (h.co.x - t.co.x);
+      float y = (h.co.y - t.co.y);
+      float r = sqrt(pow(x,2) + pow(y,2));
+      x = x * growthrate / r + t.co.x;
+      y = y * growthrate / r + t.co.y;
       t.addChild(new VeinTree(new PVector(x, y)));
     }
   }
